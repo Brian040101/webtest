@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang='zh-Hant'>
+<head>
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1, viewport-fit=cover'>
+<title>店家與主辦方整合</title>
+<meta name='theme-color' content='#01696f'>
+<script src='https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js'></script>
+<style>
+:root{--bg:#f7f6f2;--surface:#fff;--surface2:#faf9f6;--text:#28251d;--muted:#6d6a63;--primary:#01696f;--primarySoft:#dceceb;--ok:#437a22;--okSoft:#e5efdd;--warn:#da7101;--warnSoft:#f6e6d8;--blue:#0a6173;--blueSoft:#e4f1f4;--shadow:0 10px 30px rgba(40,37,29,.08);--r:24px}
+*{box-sizing:border-box;margin:0;padding:0}html{-webkit-text-size-adjust:none;text-size-adjust:none}body{font-family:system-ui,-apple-system,BlinkMacSystemFont,'Noto Sans TC',sans-serif;background: radial-gradient(circle at top, #f2f8f8 0, #f7f6f2 38%, #ebe6dc 100%);color:var(--text)}button,input,textarea,select{font:inherit}button{cursor:pointer}
+.app{max-width:430px;margin:0 auto;min-height:100vh;background:var(--bg);position:relative;padding-bottom:96px;box-shadow:0 24px 60px rgba(40,37,29,.12)}
+.screen{display:none;min-height:100vh}.screen.active{display:block}.top{position:sticky;top:0;background:rgba(247,246,242,.82);backdrop-filter:blur(18px);padding:16px;border-bottom:1px solid rgba(0,0,0,.05);z-index:10}.row{display:flex;align-items:center;justify-content:space-between;gap:10px}.title{font-size:1.12rem;font-weight:800}.sub{font-size:.84rem;color:var(--muted);margin-top:4px}.content{padding:16px;display:grid;gap:16px}.card{background:rgba(255,255,255,.92);border:1px solid rgba(0,0,0,.05);border-radius:28px;box-shadow:0 18px 45px rgba(40,37,29,.08);padding:16px;backdrop-filter:blur(8px)}.hero{background:linear-gradient(155deg,rgba(220,236,235,.95),rgba(255,255,255,.96) 52%,rgba(244,241,234,.95) 100%)}.hero h1{font-size:1.74rem;line-height:1.08;margin-bottom:10px}.hero p{color:var(--muted);margin-bottom:14px}.btns{display:flex;gap:10px;flex-wrap:wrap}.btn{height:46px;border:none;border-radius:999px;padding:0 16px;font-weight:800}.btn.primary{background:linear-gradient(135deg,var(--primary),#0d8590);color:#fff;box-shadow:0 10px 24px rgba(1,105,111,.18)}.btn.secondary{background:rgba(255,255,255,.88);border:1px solid rgba(0,0,0,.08)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.mini{background:var(--surface2);border-radius:16px;padding:12px}.mini span{display:block;font-size:.75rem;color:var(--muted);margin-bottom:4px}.mini strong{font-size:.95rem}.warnBox,.infoBox,.okBox{border-radius:16px;padding:12px;font-size:.92rem}.warnBox{background:var(--warnSoft);color:#8a4a09}.infoBox{background:var(--blueSoft);color:var(--blue)}.okBox{background:var(--okSoft);color:var(--ok)}
+#reader,#shopReader{width:100%;min-height:280px;background:#111;border-radius:24px;overflow:hidden}.hint{font-size:.82rem;color:var(--muted)}
+.input{display:flex;align-items:center;min-height:48px;border:1px solid rgba(0,0,0,.08);background:#fff;border-radius:999px;padding:0 14px}.input input{width:100%;border:none;outline:none;background:transparent}.textarea{border:1px solid rgba(0,0,0,.08);background:#fff;border-radius:20px;padding:12px}.textarea textarea{width:100%;min-height:100px;border:none;outline:none;resize:none;background:transparent}.sectionTitle{font-size:1rem;font-weight:800}.nav{position:fixed;left:50%;transform:translateX(-50%);bottom:0;max-width:430px;width:100%;display:flex;justify-content:space-around;background:rgba(255,255,255,.92);backdrop-filter:blur(18px);padding:10px 12px 18px;border-top:1px solid rgba(0,0,0,.06);box-shadow:0 -10px 30px rgba(40,37,29,.06)}.nav button{border:none;background:none;color:#807d76;font-size:.72rem;display:grid;place-items:center;gap:4px;font-weight:700}.nav button.active{color:var(--primary);transform:translateY(-1px)}
+@media (max-width:520px){.app{max-width:none;width:100%;box-shadow:none}.nav{max-width:none}}
+</style>
+</head>
+<body>
+<main class='app'>
+<section class='screen active' id='recommend'>
+<header class='top'><div class='row'><div><div class='title'>推薦店家</div><div class='sub'>推薦合作店家給活動主辦方</div></div><button class='btn secondary' data-go='post'>剩食發文</button></div></header>
+<div class='content'>
+<article class='card hero'><h1>推薦合作店家，讓活動與剩食串起來。</h1><p>&nbsp;</p></article>
+<article class='card'><div class='sectionTitle'>推薦店家</div><div class='sub' style='margin-top:6px'>依距離、合作度、出餐穩定度與活動類型推薦適合的合作店家。</div><div style='display:grid;gap:12px;margin-top:12px'><div class='card' style='box-shadow:none'><div class='row'><strong>清心便當</strong><span class='badge' style='background:var(--okSoft);color:var(--ok);border-radius:999px;padding:6px 10px;font-size:.75rem;font-weight:800'>高配合度</span></div><div class='sub' style='margin-top:6px'>距離目前位置 180m · 步行約 2 分鐘</div><div class='meta' style='display:flex;gap:8px;flex-wrap:wrap;margin-top:10px'><span class='pill'>出餐穩定：4.9/5</span><span class='pill'>適合 50 人以下</span><span class='pill'>可快速備餐</span></div><div class='btns' style='margin-top:12px'><button class='btn secondary' data-contact='清心便當'>聯絡店家</button></div></div><div class='card' style='box-shadow:none'><div class='row'><strong>校園輕食坊</strong><span class='badge' style='background:var(--blueSoft);color:var(--blue);border-radius:999px;padding:6px 10px;font-size:.75rem;font-weight:800'>中距離</span></div><div class='sub' style='margin-top:6px'>距離目前位置 320m · 步行約 4 分鐘</div><div class='meta' style='display:flex;gap:8px;flex-wrap:wrap;margin-top:10px'><span class='pill'>冷藏保存佳</span><span class='pill'>適合講座 / 論壇</span><span class='pill'>菜色選擇多</span></div><div class='btns' style='margin-top:12px'><button class='btn secondary' data-contact='校園輕食坊'>聯絡店家</button></div></div><div class='card' style='box-shadow:none'><div class='row'><strong>友善餐盒店</strong><span class='badge' style='background:var(--warnSoft);color:#8a4a09;border-radius:999px;padding:6px 10px;font-size:.75rem;font-weight:800'>需預約</span></div><div class='sub' style='margin-top:6px'>距離目前位置 500m · 步行約 7 分鐘</div><div class='meta' style='display:flex;gap:8px;flex-wrap:wrap;margin-top:10px'><span class='pill'>適合大量活動</span><span class='pill'>可搭配剩食釋出</span><span class='pill'>配送彈性高</span></div><div class='btns' style='margin-top:12px'><button class='btn secondary' data-contact='友善餐盒店'>聯絡店家</button></div></div></div></article>
+</div></section>
+
+<section class='screen' id='post'>
+<header class='top'><div class='row'><div><div class='title'>剩食發文</div><div class='sub'>店家發文上傳剩食</div></div><button class='btn secondary' data-go='out'>店家出餐</button></div></header>
+<div class='content'><article class='card'><div class='sub'>活動/品項名稱</div><div class='input'><input value='講座活動剩餘餐盒'></div><div style='height:10px'></div><div class='sub'>剩食地點</div><div class='input'><input value='活動會場 A 入口取餐桌'></div><div style='height:10px'></div><div class='row'><div style='flex:1'><div class='sub'>剩餘份數</div><div class='input'><input value='8'></div></div><div style='flex:1'><div class='sub'>領取截止</div><div class='input'><input value='17:30'></div></div></div><div style='height:10px'></div><div class='sub'>上傳圖片</div><div class='input' style='align-items:flex-start;padding:10px 14px'><input type='file' id='foodImage' accept='image/*' style='width:100%;border:none;outline:none;background:transparent;font:inherit'><input type='hidden' id='imageUrl'></div><div style='height:10px'></div><div class='sub'>備註</div><div class='textarea'><textarea>現場剩餘餐盒已集中於領取點 A，請於截止前領取。</textarea></div><div style='height:12px'></div><div class='btns'><button class='btn secondary'>預覽貼文</button><button class='btn primary'>發布貼文</button></div></article></div></section>
+
+<section class='screen' id='out'>
+<header class='top'><div class='row'><div><div class='title'>店家出餐</div><div class='sub'>掃到任意 QR code 即代表出餐</div></div><button class='btn secondary' data-go='recommend'>推薦店家</button></div></header>
+<div class='content'><article class='card'><div id='shopReader'></div><div style='height:12px'></div><div class='btns'><button class='btn secondary' id='startShopBtn'>啟動相機</button><button class='btn secondary' id='stopShopBtn'>停止掃描</button></div></article><article class='card'><div class='sectionTitle'>最新出餐紀錄</div><div class='sub' id='shopScanResult' style='margin-top:8px'>尚未掃描。</div></article></div></section>
+
+<nav class='nav'><button class='active' data-go='recommend'>推薦店家</button><button data-go='post'>剩食發文</button><button data-go='out'>店家出餐</button></nav>
+</main>
+<script>
+const screens=document.querySelectorAll('.screen');
+const navButtons=document.querySelectorAll('.nav button');
+const gotoButtons=document.querySelectorAll('[data-go]');
+let shopScanner=null,shopRunning=false;
+function go(id){screens.forEach(s=>s.classList.toggle('active',s.id===id));navButtons.forEach(b=>b.classList.toggle('active',b.dataset.go===id));if(id==='out'){startShopScanner()}else{stopShopScanner()}window.scrollTo({top:0,behavior:'smooth'})}
+gotoButtons.forEach(btn=>btn.addEventListener('click',()=>{const t=btn.dataset.go;if(t)go(t)}));
+async function onShopScanSuccess(decodedText){const seed=(decodedText||'shop').split('').reduce((a,c)=>a+c.charCodeAt(0),0);const items=['雞腿便當','素食便當','沙拉餐盒','三明治餐盒'];const item=items[seed%items.length];const now=new Date();const t=now.toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit',hour12:false});document.getElementById('shopScanResult').innerHTML='已出餐：<strong>'+item+'</strong><br>出餐時間：<strong>'+t+'</strong>';alert('店家已出餐：'+item+'，出餐時間：'+t)}
+async function startShopScanner(){if(shopRunning)return;try{if(!shopScanner)shopScanner=new Html5Qrcode('shopReader');await shopScanner.start({facingMode:'environment'},{fps:10,qrbox:{width:220,height:220}},onShopScanSuccess,()=>{});shopRunning=true}catch(err){shopReader.innerHTML='<div class="warnBox">無法開啟相機。請確認使用 HTTPS、已允許相機權限。</div>'}}
+async function stopShopScanner(){if(shopScanner&&shopRunning){try{await shopScanner.stop();await shopScanner.clear()}catch(e){}shopRunning=false;shopReader.innerHTML=''}}
+document.getElementById('foodImage').addEventListener('change',e=>{const file=e.target.files[0];if(file)alert('圖片已上傳：'+file.name)});
+document.getElementById('startShopBtn').addEventListener('click',startShopScanner);document.getElementById('stopShopBtn').addEventListener('click',stopShopScanner);
+document.querySelectorAll('[data-contact]').forEach(btn=>btn.addEventListener('click',()=>alert('已準備聯絡：'+btn.dataset.contact)));
+</script>
+</body>
+</html>
