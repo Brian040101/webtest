@@ -44,10 +44,10 @@ let shopScanner=null,shopRunning=false;
 function go(id){screens.forEach(s=>s.classList.toggle('active',s.id===id));navButtons.forEach(b=>b.classList.toggle('active',b.dataset.go===id));if(id==='out'){startShopScanner()}else{stopShopScanner()}window.scrollTo({top:0,behavior:'smooth'})}
 gotoButtons.forEach(btn=>btn.addEventListener('click',()=>{const t=btn.dataset.go;if(t)go(t)}));
 async function onShopScanSuccess(decodedText){const seed=(decodedText||'shop').split('').reduce((a,c)=>a+c.charCodeAt(0),0);const items=['雞腿便當','素食便當','沙拉餐盒','三明治餐盒'];const item=items[seed%items.length];const now=new Date();document.getElementById('shopScanResult').textContent='已出餐：'+item+'，時間：'+now.toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit',hour12:false});alert('店家已出餐：'+item)}
-async function startShopScanner(){if(shopRunning)return;try{if(!shopScanner)shopScanner=new Html5Qrcode('shopReader');await shopScanner.start({facingMode:'environment'},{fps:10,qrbox:{width:220,height:220}},onShopScanSuccess,()=>{});shopRunning=true}catch(err){shopReader.innerHTML='<div class=\"warnBox\">無法開啟相機。請確認使用 HTTPS、已允許相機權限。</div>'}}
+async function startShopScanner(){if(shopRunning)return;try{if(!shopScanner)shopScanner=new Html5Qrcode('shopReader');await shopScanner.start({facingMode:'environment'},{fps:10,qrbox:{width:220,height:220}},onShopScanSuccess,()=>{});shopRunning=true}catch(err){shopReader.innerHTML='<div class="warnBox">無法開啟相機。請確認使用 HTTPS、已允許相機權限。</div>'}}
 async function stopShopScanner(){if(shopScanner&&shopRunning){try{await shopScanner.stop();await shopScanner.clear()}catch(e){}shopRunning=false;shopReader.innerHTML=''}}
 document.getElementById('foodImage').addEventListener('change',e=>{const file=e.target.files[0];if(file)alert('圖片已上傳：'+file.name)});
-document.getElementById('startShopBtn').addEventListener('click',startShopScanner);document.getElementById('stopShopBtn').addEventListener('click',stopShopScanner);renderCatalog();
+document.getElementById('startShopBtn').addEventListener('click',startShopScanner);document.getElementById('stopShopBtn').addEventListener('click',stopShopScanner);
 </script>
 </body>
 </html>
