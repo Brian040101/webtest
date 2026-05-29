@@ -10,44 +10,275 @@
 :root{--bg:#f7f6f2;--surface:#fff;--surface2:#faf9f6;--text:#28251d;--muted:#6d6a63;--primary:#01696f;--primarySoft:#dceceb;--ok:#437a22;--okSoft:#e5efdd;--warn:#da7101;--warnSoft:#f6e6d8;--blue:#0a6173;--blueSoft:#e4f1f4;--shadow:0 10px 30px rgba(40,37,29,.08);--r:24px}
 *{box-sizing:border-box;margin:0;padding:0}html{-webkit-text-size-adjust:none;text-size-adjust:none}body{font-family:system-ui,-apple-system,BlinkMacSystemFont,'Noto Sans TC',sans-serif;background:linear-gradient(180deg,#ece8e0,#f7f6f2);color:var(--text)}button,input,textarea,select{font:inherit}button{cursor:pointer}
 .app{max-width:430px;margin:0 auto;min-height:100vh;background:var(--bg);position:relative;padding-bottom:96px;box-shadow:0 24px 60px rgba(40,37,29,.12)}
-.screen{display:none;min-height:100vh}.screen.active{display:block}.top{position:sticky;top:0;background:rgba(247,246,242,.94);backdrop-filter:blur(12px);padding:16px;border-bottom:1px solid rgba(0,0,0,.06);z-index:10}.row{display:flex;align-items:center;justify-content:space-between;gap:10px}.title{font-size:1.12rem;font-weight:800}.sub{font-size:.84rem;color:var(--muted);margin-top:4px}.content{padding:16px;display:grid;gap:16px}.card{background:var(--surface);border:1px solid rgba(0,0,0,.06);border-radius:var(--r);box-shadow:var(--shadow);padding:16px}.hero{background:linear-gradient(155deg,#f4f1ea,#fff 45%,#dceceb 100%)}.hero h1{font-size:1.74rem;line-height:1.08;margin-bottom:10px}.hero p{color:var(--muted);margin-bottom:14px}.btns{display:flex;gap:10px;flex-wrap:wrap}.btn{height:46px;border:none;border-radius:999px;padding:0 16px;font-weight:800}.btn.primary{background:var(--primary);color:#fff}.btn.secondary{background:#fff;border:1px solid rgba(0,0,0,.1)}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.mini{background:var(--surface2);border-radius:16px;padding:12px}.mini span{display:block;font-size:.75rem;color:var(--muted);margin-bottom:4px}.mini strong{font-size:.95rem}.warnBox,.infoBox,.okBox{border-radius:16px;padding:12px;font-size:.92rem}.warnBox{background:var(--warnSoft);color:#8a4a09}.infoBox{background:var(--blueSoft);color:var(--blue)}.okBox{background:var(--okSoft);color:var(--ok)}
-#reader,#shopReader{width:100%;min-height:280px;background:#111;border-radius:24px;overflow:hidden}.hint{font-size:.82rem;color:var(--muted)}
-.input{display:flex;align-items:center;min-height:48px;border:1px solid rgba(0,0,0,.08);background:#fff;border-radius:999px;padding:0 14px}.input input{width:100%;border:none;outline:none;background:transparent}.textarea{border:1px solid rgba(0,0,0,.08);background:#fff;border-radius:20px;padding:12px}.textarea textarea{width:100%;min-height:100px;border:none;outline:none;resize:none;background:transparent}.sectionTitle{font-size:1rem;font-weight:800}.nav{position:fixed;left:50%;transform:translateX(-50%);bottom:0;max-width:430px;width:100%;display:flex;justify-content:space-around;background:rgba(249,248,245,.97);backdrop-filter:blur(12px);padding:10px 12px 18px;border-top:1px solid rgba(0,0,0,.08)}.nav button{border:none;background:none;color:#807d76;font-size:.72rem;display:grid;place-items:center;gap:4px;font-weight:700}.nav button.active{color:var(--primary)}
-@media (max-width:520px){.app{max-width:none;width:100%;box-shadow:none}.nav{max-width:none}}
+.screen{display:none;min-height:100vh}.screen.active{display:block}
+.top{position:sticky;top:0;background:rgba(247,246,242,.94);backdrop-filter:blur(12px);padding:16px;border-bottom:1px solid rgba(0,0,0,.06);z-index:10}
+.row{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.title{font-size:1.12rem;font-weight:800}.sub{font-size:.84rem;color:var(--muted);margin-top:4px}
+.content{padding:16px;display:grid;gap:16px}
+.card{background:var(--surface);border:1px solid rgba(0,0,0,.06);border-radius:var(--r);box-shadow:var(--shadow);padding:16px}
+.hero{background:linear-gradient(155deg,#f4f1ea,#fff 45%,#dceceb 100%)}.hero h1{font-size:1.74rem;line-height:1.08;margin-bottom:10px}
+.btns{display:flex;gap:10px;flex-wrap:wrap}
+.btn{height:46px;border:none;border-radius:999px;padding:0 18px;font-weight:800}
+.btn.primary{background:var(--primary);color:#fff}.btn.secondary{background:#fff;border:1px solid rgba(0,0,0,.1)}
+.input{display:flex;align-items:center;min-height:48px;border:1px solid rgba(0,0,0,.08);background:#fff;border-radius:999px;padding:0 14px}
+.input input,.input select{width:100%;border:none;outline:none;background:transparent}
+.textarea{border:1px solid rgba(0,0,0,.08);background:#fff;border-radius:20px;padding:12px}
+.textarea textarea{width:100%;min-height:100px;border:none;outline:none;resize:none;background:transparent}
+.sectionTitle{font-size:1rem;font-weight:800}
+.badge{border-radius:999px;padding:6px 10px;font-size:.75rem;font-weight:800}
+.warnBox,.okBox,.infoBox{border-radius:16px;padding:14px;font-size:.92rem;line-height:1.7}
+.warnBox{background:var(--warnSoft);color:#8a4a09}.okBox{background:var(--okSoft);color:var(--ok)}.infoBox{background:var(--blueSoft);color:var(--blue)}
+.itemRow{padding:10px 0;border-bottom:1px solid #f0ede6}
+.tempBar{display:flex;align-items:center;gap:10px;background:var(--surface2);border-radius:16px;padding:12px}
+.tempNum{font-size:1.6rem;font-weight:900;color:var(--primary)}
+#shopReader{width:100%;min-height:280px;background:#111;border-radius:24px;overflow:hidden}
+.nav{position:fixed;left:50%;transform:translateX(-50%);bottom:0;max-width:430px;width:100%;display:flex;justify-content:space-around;background:rgba(249,248,245,.97);backdrop-filter:blur(12px);padding:10px 12px 18px;border-top:1px solid rgba(0,0,0,.08)}
+.nav button{border:none;background:none;color:#807d76;font-size:.72rem;display:grid;place-items:center;gap:4px;font-weight:700}.nav button.active{color:var(--primary)}
+@media(max-width:520px){.app{max-width:none;width:100%;box-shadow:none}.nav{max-width:none}}
 </style>
 </head>
 <body>
 <main class='app'>
+
+<!-- 推薦店家 -->
 <section class='screen active' id='recommend'>
-<header class='top'><div class='row'><div><div class='title'>推薦店家</div><div class='sub'>推薦合作店家給活動主辦方</div></div><button class='btn secondary' data-go='post'>剩食發文</button></div></header>
+<header class='top'><div class='row'><div><div class='title'>推薦店家</div><div class='sub'>推薦合作店家給活動主辦方</div></div><button class='btn secondary' id='goPost1'>剩食發文</button></div></header>
 <div class='content'>
 <article class='card hero'><h1>推薦合作店家，讓活動與剩食串起來。</h1><p>&nbsp;</p></article>
-<article class='card'><div class='sectionTitle'>推薦店家</div><div class='sub' style='margin-top:6px'>依距離、合作度與活動類型推薦適合的合作店家。</div><div style='display:grid;gap:10px;margin-top:12px'><div class='card' style='box-shadow:none'><div class='row'><strong>清心便當</strong><span class='badge' style='background:var(--okSoft);color:var(--ok);border-radius:999px;padding:6px 10px;font-size:.75rem;font-weight:800'>高配合度</span></div><div class='sub'>距離 180m · 出餐穩定 · 適合 50 人以下活動</div></div><div class='card' style='box-shadow:none'><div class='row'><strong>校園輕食坊</strong><span class='badge' style='background:var(--blueSoft);color:var(--blue);border-radius:999px;padding:6px 10px;font-size:.75rem;font-weight:800'>中距離</span></div><div class='sub'>距離 320m · 冷藏保存佳 · 適合講座/論壇</div></div><div class='card' style='box-shadow:none'><div class='row'><strong>友善餐盒店</strong><span class='badge' style='background:var(--warnSoft);color:#8a4a09;border-radius:999px;padding:6px 10px;font-size:.75rem;font-weight:800'>需預約</span></div><div class='sub'>距離 500m · 適合大量活動 · 可搭配剩食釋出</div></div></div></article>
+<article class='card'><div class='sectionTitle'>推薦店家</div><div class='sub' style='margin-top:6px'>依距離、合作度與活動類型推薦適合的合作店家。</div>
+<div style='display:grid;gap:10px;margin-top:12px'>
+<div class='card' style='box-shadow:none'><div class='row'><strong>清心便當</strong><span class='badge' style='background:var(--okSoft);color:var(--ok)'>高配合度</span></div><div class='sub'>距離 180m · 出餐穩定 · 適合 50 人以下活動</div></div>
+<div class='card' style='box-shadow:none'><div class='row'><strong>校園輕食坊</strong><span class='badge' style='background:var(--blueSoft);color:var(--blue)'>中距離</span></div><div class='sub'>距離 320m · 冷藏保存佳 · 適合講座/論壇</div></div>
+<div class='card' style='box-shadow:none'><div class='row'><strong>友善餐盒店</strong><span class='badge' style='background:var(--warnSoft);color:#8a4a09'>需預約</span></div><div class='sub'>距離 500m · 適合大量活動 · 可搭配剩食釋出</div></div>
+</div></article>
 </div></section>
 
+<!-- 品項建檔 -->
+<section class='screen' id='items'>
+<header class='top'><div class='title'>品項建檔</div><div class='sub'>輸入名稱，系統自動推算賞味時長</div></header>
+<div class='content'>
+  <article class='card'>
+    <div class='sectionTitle'>目前氣溫</div>
+    <div class='tempBar' style='margin-top:10px'>
+      <div>
+        <div class='tempNum' id='tempDisplay'>-- °C</div>
+        <div class='sub' id='tempLocation'>取得位置中...</div>
+      </div>
+      <button class='btn secondary' id='refreshTempBtn' style='margin-left:auto'>重新取得</button>
+    </div>
+  </article>
+  <article class='card'>
+    <div class='sectionTitle'>新增品項</div>
+    <div style='display:grid;gap:10px;margin-top:12px'>
+      <div><div class='sub'>品項名稱</div><div class='input' style='margin-top:6px'><input id='newItemName' placeholder='例：雞腿便當、沙拉餐盒、湯品'></div></div>
+      <div id='inferResult' style='display:none'></div>
+      <div class='btns'>
+        <button class='btn secondary' id='inferBtn'>自動推算</button>
+        <button class='btn primary' id='addItemBtn'>確認新增</button>
+      </div>
+    </div>
+  </article>
+  <article class='card'>
+    <div class='sectionTitle'>已建檔品項</div>
+    <div id='itemList' style='margin-top:8px'><div class='sub'>尚未建檔任何品項。</div></div>
+  </article>
+</div></section>
+
+<!-- 剩食發文 -->
 <section class='screen' id='post'>
-<header class='top'><div class='row'><div><div class='title'>剩食發文</div><div class='sub'>店家發文上傳剩食</div></div><button class='btn secondary' data-go='out'>店家出餐</button></div></header>
-<div class='content'><article class='card'><div class='sub'>活動/品項名稱</div><div class='input'><input value='講座活動剩餘餐盒'></div><div style='height:10px'></div><div class='sub'>剩食地點</div><div class='input'><input value='活動會場 A 入口取餐桌'></div><div style='height:10px'></div><div class='row'><div style='flex:1'><div class='sub'>剩餘份數</div><div class='input'><input value='8'></div></div><div style='flex:1'><div class='sub'>領取截止</div><div class='input'><input value='17:30'></div></div></div><div style='height:10px'></div><div class='sub'>上傳圖片</div><div class='input' style='align-items:flex-start;padding:10px 14px'><input type='file' id='foodImage' accept='image/*' style='width:100%;border:none;outline:none;background:transparent;font:inherit'><input type='hidden' id='imageUrl'></div><div style='height:10px'></div><div class='sub'>備註</div><div class='textarea'><textarea>現場剩餘餐盒已集中於領取點 A，請於截止前領取。</textarea></div><div style='height:12px'></div><div class='btns'><button class='btn secondary'>預覽貼文</button><button class='btn primary'>發布貼文</button></div></article></div></section>
+<header class='top'><div class='row'><div><div class='title'>剩食發文</div><div class='sub'>店家發文上傳剩食</div></div><button class='btn secondary' id='goOut1'>店家出餐</button></div></header>
+<div class='content'><article class='card'>
+<div class='sub'>活動/品項名稱</div><div class='input'><input value='講座活動剩餘餐盒'></div>
+<div style='height:10px'></div>
+<div class='sub'>剩食地點</div><div class='input'><input value='活動會場 A 入口取餐桌'></div>
+<div style='height:10px'></div>
+<div style='display:flex;gap:10px'>
+  <div style='flex:1'><div class='sub'>剩餘份數</div><div class='input'><input value='8'></div></div>
+  <div style='flex:1'><div class='sub'>領取截止</div><div class='input'><input value='17:30'></div></div>
+</div>
+<div style='height:10px'></div>
+<div class='sub'>上傳圖片</div>
+<div class='input' style='align-items:flex-start;padding:10px 14px'><input type='file' id='foodImage' accept='image/*' style='width:100%;border:none;outline:none;background:transparent;font:inherit'></div>
+<div style='height:10px'></div>
+<div class='sub'>備註</div><div class='textarea'><textarea>現場剩餘餐盒已集中於領取點 A，請於截止前領取。</textarea></div>
+<div style='height:12px'></div>
+<div class='btns'><button class='btn secondary' id='previewBtn'>預覽貼文</button><button class='btn primary' id='publishBtn'>發布貼文</button></div>
+</article></div></section>
 
+<!-- 店家出餐 -->
 <section class='screen' id='out'>
-<header class='top'><div class='row'><div><div class='title'>店家出餐</div><div class='sub'>掃到任意 QR code 即代表出餐</div></div><button class='btn secondary' data-go='recommend'>推薦店家</button></div></header>
-<div class='content'><article class='card'><div id='shopReader'></div><div style='height:12px'></div><div class='btns'><button class='btn secondary' id='startShopBtn'>啟動相機</button><button class='btn secondary' id='stopShopBtn'>停止掃描</button></div></article><article class='card'><div class='sectionTitle'>最新出餐紀錄</div><div class='sub' id='shopScanResult' style='margin-top:8px'>尚未掃描。</div></article></section>
+<header class='top'><div class='row'><div><div class='title'>店家出餐</div><div class='sub'>掃到任意 QR code 即代表出餐</div></div><button class='btn secondary' id='goRecommend1'>推薦店家</button></div></header>
+<div class='content'>
+<article class='card'>
+  <div id='shopReader'></div>
+  <div style='height:12px'></div>
+  <div class='btns'>
+    <button class='btn secondary' id='startShopBtn'>啟動相機</button>
+    <button class='btn secondary' id='stopShopBtn'>停止掃描</button>
+  </div>
+</article>
+<article class='card'><div class='sectionTitle'>最新出餐紀錄</div><div id='shopScanResult' class='sub' style='margin-top:8px'>尚未掃描。</div></article>
+</div></section>
 
-<nav class='nav'><button class='active' data-go='recommend'>推薦店家</button><button data-go='post'>剩食發文</button><button data-go='out'>店家出餐</button></nav>
+<nav class='nav'>
+  <button class='active' id='nav-recommend'>推薦店家</button>
+  <button id='nav-items'>品項建檔</button>
+  <button id='nav-post'>剩食發文</button>
+  <button id='nav-out'>店家出餐</button>
+</nav>
 </main>
 <script>
-const screens=document.querySelectorAll('.screen');
-const navButtons=document.querySelectorAll('.nav button');
-const gotoButtons=document.querySelectorAll('[data-go]');
-let shopScanner=null,shopRunning=false;
-function go(id){screens.forEach(s=>s.classList.toggle('active',s.id===id));navButtons.forEach(b=>b.classList.toggle('active',b.dataset.go===id));if(id==='out'){startShopScanner()}else{stopShopScanner()}window.scrollTo({top:0,behavior:'smooth'})}
-gotoButtons.forEach(btn=>btn.addEventListener('click',()=>{const t=btn.dataset.go;if(t)go(t)}));
-async function onShopScanSuccess(decodedText){const seed=(decodedText||'shop').split('').reduce((a,c)=>a+c.charCodeAt(0),0);const items=['雞腿便當','素食便當','沙拉餐盒','三明治餐盒'];const item=items[seed%items.length];const now=new Date();document.getElementById('shopScanResult').textContent='已出餐：'+item+'，時間：'+now.toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit',hour12:false});alert('店家已出餐：'+item)}
-async function startShopScanner(){if(shopRunning)return;try{if(!shopScanner)shopScanner=new Html5Qrcode('shopReader');await shopScanner.start({facingMode:'environment'},{fps:10,qrbox:{width:220,height:220}},onShopScanSuccess,()=>{});shopRunning=true}catch(err){shopReader.innerHTML='<div class="warnBox">無法開啟相機。請確認使用 HTTPS、已允許相機權限。</div>'}}
-async function stopShopScanner(){if(shopScanner&&shopRunning){try{await shopScanner.stop();await shopScanner.clear()}catch(e){}shopRunning=false;shopReader.innerHTML=''}}
-document.getElementById('foodImage').addEventListener('change',e=>{const file=e.target.files[0];if(file)alert('圖片已上傳：'+file.name)});
-document.getElementById('startShopBtn').addEventListener('click',startShopScanner);document.getElementById('stopShopBtn').addEventListener('click',stopShopScanner);
+var shopScanner=null, shopRunning=false;
+var currentTemp=null;
+var itemCatalog=[
+  {name:'雞腿便當',base:120},
+  {name:'排骨便當',base:120},
+  {name:'素食便當',base:150},
+  {name:'沙拉餐盒',base:60},
+  {name:'三明治',base:90},
+  {name:'粥品',base:90},
+  {name:'麵食',base:90},
+  {name:'湯品',base:60},
+  {name:'甜點',base:120},
+  {name:'飲料',base:240}
+];
+
+function go(id){
+  document.querySelectorAll('.screen').forEach(function(s){s.classList.toggle('active',s.id===id);});
+  document.querySelectorAll('.nav button').forEach(function(b){b.classList.remove('active');});
+  var nb=document.getElementById('nav-'+id);
+  if(nb) nb.classList.add('active');
+  if(id!=='out') stopShopScanner();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+document.getElementById('nav-recommend').onclick=function(){go('recommend');};
+document.getElementById('nav-items').onclick=function(){go('items');fetchTemp();};
+document.getElementById('nav-post').onclick=function(){go('post');};
+document.getElementById('nav-out').onclick=function(){go('out');};
+document.getElementById('goPost1').onclick=function(){go('post');};
+document.getElementById('goOut1').onclick=function(){go('out');};
+document.getElementById('goRecommend1').onclick=function(){go('recommend');};
+document.getElementById('refreshTempBtn').onclick=function(){fetchTemp();};
+
+// 取得氣溫：先用 geolocation + open-meteo
+function fetchTemp(){
+  document.getElementById('tempDisplay').textContent='取得中...';
+  document.getElementById('tempLocation').textContent='偵測位置中...';
+  if(!navigator.geolocation){useFallbackTemp();return;}
+  navigator.geolocation.getCurrentPosition(function(pos){
+    var lat=pos.coords.latitude.toFixed(4);
+    var lon=pos.coords.longitude.toFixed(4);
+    var url='https://api.open-meteo.com/v1/forecast?latitude='+lat+'&longitude='+lon+'&current_weather=true';
+    fetch(url).then(function(r){return r.json();}).then(function(d){
+      var t=d.current_weather.temperature;
+      currentTemp=t;
+      document.getElementById('tempDisplay').textContent=t+' °C';
+      document.getElementById('tempLocation').textContent='緯度 '+lat+'，經度 '+lon;
+    }).catch(function(){useFallbackTemp();});
+  },function(){useFallbackTemp();});
+}
+
+function useFallbackTemp(){
+  // fallback: 用台灣平均氣溫 26°C
+  currentTemp=26;
+  document.getElementById('tempDisplay').textContent='26 °C';
+  document.getElementById('tempLocation').textContent='無法取得位置，使用預設 26°C';
+}
+
+function inferBase(name){
+  name=(name||'').toLowerCase();
+  if(/沙拉|生菜|水果|優格|鮮奶|奶酪/.test(name)) return 60;
+  if(/湯|粥|鍋/.test(name)) return 75;
+  if(/甜點|蛋糕|布丁/.test(name)) return 90;
+  if(/麵/.test(name)) return 90;
+  if(/飲料|茶|咖啡|果汁/.test(name)) return 180;
+  if(/便當|飯|餐盒|排骨|雞腿|素食|豬|牛|雞|魚/.test(name)) return 120;
+  return 90;
+}
+
+function estimateFinal(base,temp){
+  temp=parseFloat(temp||26);
+  var f=1;
+  if(temp>=35) f=0.55;
+  else if(temp>=30) f=0.70;
+  else if(temp>=26) f=0.85;
+  else if(temp>=20) f=1.0;
+  else f=1.15;
+  return Math.max(15,Math.round(base*f));
+}
+
+function tempLabel(t){
+  if(t>=35) return '⚠️ 高溫，賞味時長大幅縮短';
+  if(t>=30) return '🌡️ 偏熱，賞味時長縮短';
+  if(t>=20) return '😊 適中，正常估算';
+  return '❄️ 涼爽，賞味時長略延長';
+}
+
+function renderItemList(){
+  var box=document.getElementById('itemList');
+  if(!box) return;
+  if(itemCatalog.length===0){box.innerHTML='<div class="sub">尚未建檔任何品項。</div>';return;}
+  box.innerHTML=itemCatalog.map(function(i){
+    var fin=estimateFinal(i.base, currentTemp!=null?currentTemp:26);
+    return '<div class="itemRow"><div class="row"><strong>'+i.name+'</strong><span class="sub">建議 '+fin+' 分鐘</span></div><div class="sub">基準 '+i.base+' 分鐘 · 常溫</div></div>';
+  }).join('');
+}
+
+document.getElementById('inferBtn').onclick=function(){
+  var name=document.getElementById('newItemName').value.trim();
+  if(!name){alert('請先輸入品項名稱');return;}
+  if(currentTemp===null){alert('尚未取得氣溫，請稍後再試或點「重新取得」');return;}
+  var base=inferBase(name);
+  var fin=estimateFinal(base,currentTemp);
+  var box=document.getElementById('inferResult');
+  box.style.display='block';
+  box.className='okBox';
+  box.innerHTML='品項：<strong>'+name+'</strong><br>'+'基準賞味時長：<strong>'+base+' 分鐘</strong>（常溫）<br>'+'當下氣溫：<strong>'+currentTemp+' °C</strong>　'+tempLabel(currentTemp)+'<br>'+'→ 最終建議賞味時長：<strong>'+fin+' 分鐘</strong>';
+};
+
+document.getElementById('addItemBtn').onclick=function(){
+  var name=document.getElementById('newItemName').value.trim();
+  if(!name){alert('請先輸入品項名稱');return;}
+  for(var i=0;i<itemCatalog.length;i++){if(itemCatalog[i].name===name){alert('此品項已建檔');return;}}
+  var base=inferBase(name);
+  var fin=estimateFinal(base,currentTemp!=null?currentTemp:26);
+  itemCatalog.push({name:name,base:base,final:fin});
+  document.getElementById('newItemName').value='';
+  document.getElementById('inferResult').style.display='none';
+  renderItemList();
+  alert('已新增：'+name+'，目前建議賞味時長 '+fin+' 分鐘');
+};
+
+document.getElementById('previewBtn').onclick=function(){alert('預覽功能開發中');};
+document.getElementById('publishBtn').onclick=function(){alert('貼文已發布！');};
+document.getElementById('foodImage').onchange=function(e){if(e.target.files[0]) alert('圖片已上傳：'+e.target.files[0].name);};
+
+function startShopScanner(){
+  if(shopRunning) return;
+  try{
+    if(!shopScanner) shopScanner=new Html5Qrcode('shopReader');
+    shopScanner.start({facingMode:'environment'},{fps:10,qrbox:{width:220,height:220}},function(){
+      var now=new Date();
+      document.getElementById('shopScanResult').innerHTML='已出餐，掃碼時間：<strong>'+now.toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit',hour12:false})+'</strong>';
+    },function(){}).then(function(){shopRunning=true;}).catch(function(){
+      document.getElementById('shopReader').innerHTML='<div class="warnBox">無法開啟相機，請確認 HTTPS 與相機權限。</div>';
+    });
+  }catch(e){document.getElementById('shopReader').innerHTML='<div class="warnBox">無法開啟相機。</div>';}
+}
+
+function stopShopScanner(){
+  if(shopScanner&&shopRunning){
+    shopScanner.stop().then(function(){shopScanner.clear();shopRunning=false;document.getElementById('shopReader').innerHTML='';}).catch(function(){shopRunning=false;});
+  }
+}
+
+document.getElementById('startShopBtn').onclick=function(){startShopScanner();};
+document.getElementById('stopShopBtn').onclick=function(){stopShopScanner();};
+
+// 初始化
+fetchTemp();
+renderItemList();
 </script>
 </body>
 </html>
