@@ -289,7 +289,20 @@ function startShopScanner(){
           var sel=document.getElementById('itemPickerSelect').value;
           if(!sel){alert('請先選擇品項');return;}
           document.body.removeChild(overlay);
-          document.getElementById('shopScanResult').innerHTML='✅ 出餐成功：<strong>'+sel+'</strong><br>時間：<strong>'+t+'</strong>';
+          // 計算賞味時長
+          var info=null;
+          for(var i=0;i<itemCatalog.length;i++){if(itemCatalog[i].name===sel){info=itemCatalog[i];break;}}
+          var base=info?info.base:90;
+          var temp=currentTemp!=null?currentTemp:26;
+          var fin=estimateFinal(base,temp);
+          var expireMin=new Date(now.getTime()+fin*60000);
+          var expireStr=expireMin.toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit',hour12:false});
+          var tempHint=temp>=35?'⚠️ 高溫':temp>=30?'🌡️ 偏熱':temp>=20?'😊 適中':'❄️ 涼爽';
+          document.getElementById('shopScanResult').innerHTML=
+            '✅ 出餐品項：<strong>'+sel+'</strong><br>'
+            +'出餐時間：<strong>'+t+'</strong><br>'
+            +'當下氣溫：<strong>'+temp+' °C</strong> '+tempHint+'<br>'
+            +'建議賞味期限：<strong>'+fin+' 分鐘</strong>（約 '+expireStr+' 前）';
           shopScanner.resume();
         };
       },
